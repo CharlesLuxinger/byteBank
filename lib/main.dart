@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(
-      Column(
-        children: <Widget>[
-          Text(
-            "First line",
-            textDirection: TextDirection.ltr,
+      MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("Transferência"),
           ),
-          Text(
-            "Second Line",
-            textDirection: TextDirection.ltr,
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
           ),
-          Expanded(
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: const FlutterLogo(),
-            ),
-          )
-        ],
+        ),
       ),
     );
