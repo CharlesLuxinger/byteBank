@@ -14,6 +14,9 @@ class ByteBankApp extends StatelessWidget {
 }
 
 class TransferForm extends StatelessWidget {
+  final TextEditingController _accountController = TextEditingController();
+  final TextEditingController _valueController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +29,7 @@ class TransferForm extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             child: TextField(
+              controller: _accountController,
               style: TextStyle(
                 fontSize: 16.0,
               ),
@@ -40,6 +44,7 @@ class TransferForm extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             child: TextField(
+              controller: _valueController,
               style: TextStyle(
                 fontSize: 16.0,
               ),
@@ -51,17 +56,22 @@ class TransferForm extends StatelessWidget {
             ),
           ),
           RaisedButton(
+            color: Colors.blueAccent,
             textColor: Colors.white,
             padding: const EdgeInsets.all(0.0),
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.blueAccent,
-              ),
+            child: Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-              child: const Text('Confirmar', style: TextStyle(fontSize: 20)),
+              child: Text('Confirmar', style: TextStyle(fontSize: 18)),
             ),
-            onPressed: null,
+            onPressed: () {
+              var _account = int.tryParse(_accountController.text);
+              var _value = double.tryParse(_valueController.text);
+
+              if (_account != null && _value != null) {
+                Transfer(_account, _value);
+              }
+            },
           ),
         ],
       ),
