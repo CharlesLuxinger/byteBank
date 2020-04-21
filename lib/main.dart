@@ -1,28 +1,91 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(
-      MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("Transferência"),
-          ),
-          body: TransfersList(),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-          ),
-        ),
+void main() => runApp(ByteBankApp());
+
+class ByteBankApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: TransferForm(),
       ),
     );
+  }
+}
+
+class TransferForm extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Nova Transferência"),
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child: TextField(
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+              decoration: InputDecoration(
+                labelText: "Número da Conta",
+                hintText: "0000",
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child: TextField(
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+              decoration: InputDecoration(
+                  labelText: "Valor",
+                  hintText: "0.00",
+                  icon: Icon(Icons.monetization_on)),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          RaisedButton(
+            textColor: Colors.white,
+            padding: const EdgeInsets.all(0.0),
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.blueAccent,
+              ),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              child: const Text('Confirmar', style: TextStyle(fontSize: 20)),
+            ),
+            onPressed: null,
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class TransfersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        TransferItem(Transfer(1234, 100.0)),
-        TransferItem(Transfer(1235, 200.0)),
-        TransferItem(Transfer(1236, 300.0)),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Transferências"),
+      ),
+      body: Column(
+        children: <Widget>[
+          TransferItem(Transfer(1234, 100.0)),
+          TransferItem(Transfer(1235, 200.0)),
+          TransferItem(Transfer(1236, 300.0)),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
